@@ -10,9 +10,12 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-    <p> Hello  <%= current_user.email %> - <%= link_to "Sign_out", destroy_user_session_path, :method => 'delete' %></p>
-    <%end%>
+    <%= render 'homeapp/header' %>
+    <div class="container">
+    <% flash.each do |email, msg| %>
+    <%= content_tag(:div, msg, class: "alert alert-info") %>
+    <% end %>
     <%= yield %>
+  </div>
   </body>
 </html>

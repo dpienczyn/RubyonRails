@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
-.nameUser{
-	text-transform: uppercase;
-}
+ @import "bootstrap";
+
+ body{
+ 	font-family: Times, Times New Roman, serif;
+ }
