@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'project/index'
   get 'projects/index'
   get 'contact/index'
   resources :posts do
