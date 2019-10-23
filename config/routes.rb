@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :posts
+  get 'projects/index'
+  get 'contact/index'
+  resources :posts do
+  resources :comments
+end
   get 'homeapp/index'
-  root 'home#index'
+  root 'posts#index'
   get 'home/about'
-  devise_for :users
+  get 'contact/index'
+  devise_for :users                                  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

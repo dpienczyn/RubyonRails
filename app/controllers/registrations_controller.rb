@@ -1,4 +1,4 @@
-class RegistartionsController < Devise::RegistartionsController
+class Users::RegistartionsController < Devise::RegistartionsController
 
 	private
 
@@ -10,4 +10,11 @@ class RegistartionsController < Devise::RegistartionsController
 		params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
 	end
 
+	def destroy
+    resource.soft_delete
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    set_flash_message :notice, :destroyed
+    yield resource if block_given?
+    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+  	end
 end
