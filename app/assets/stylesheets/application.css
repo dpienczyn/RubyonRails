@@ -12,9 +12,6 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
- @import "bootstrap";
-
- body{
- 	font-family: Times, Times New Roman, serif;
- }
+ 

@@ -1,0 +1,38 @@
+.footer{
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  border-top: solid 1px #f0f0f0;
+  text-align: center;
+  padding: 70px 70px 70px 70px;
+}
+.font-awe a{
+  font-size: 25px;
+  fill: #222;
+}
+.menuTitle{
+	font-size: 19px;
+	font-family: "LTCBodoni175W01-Regular";
+	font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0em;
+  padding-top: 70px;
+}
+.menuTitle span a{
+  margin-right: 5px;
+  margin-left: 5px;
+  text-decoration: none;
+  color: #aaa;
+}
+.menuTitle span a:hover{
+	color: #000000;
+	line-height: 200%;
+}
+@media (max-width: 767.98px) { 
+  .menuTitle span{
+  	display: block;
+  	margin-top: 5px;
+  }
+}
