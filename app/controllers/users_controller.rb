@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def edit
     @user = current_user
@@ -22,4 +22,5 @@ before_action :authenticate_user!
     # NOTE: Using `strong_parameters` gem
     params.require(:user).permit(:password, :password_confirmation)
   end
+  
 end

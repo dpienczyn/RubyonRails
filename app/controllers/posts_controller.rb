@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    # @posts = Post.where("author ILIKE ?", "%#{params[:search]}%")
     @posts = Post.page(params[:page]).per(9)
   end
 
@@ -69,4 +70,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:author, :description, :title, :image)
     end
+    
 end

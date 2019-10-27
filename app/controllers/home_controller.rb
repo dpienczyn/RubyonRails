@@ -4,10 +4,10 @@ class HomeController < ApplicationController
   		redirect_to homeapp_index_path
   	else
   		redirect_to new_user_session_path
+    end
   end
 
   def about
-
   end
-end
+
 end
