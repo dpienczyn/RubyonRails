@@ -16,12 +16,12 @@
 }
 .title{
 	font-family: "Times New Roman",Times,serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 28px;
-    letter-spacing: 0em;
-    line-height: 1.5em;
-    text-align: center;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 28px;
+  letter-spacing: 0em;
+  line-height: 1.5em;
+  text-align: center;
 }
 .title a{
 	text-decoration: none;
@@ -34,4 +34,143 @@
 .img{
 	text-align: center;
 	padding-bottom: 20px;
+}
+.postTitle h3{
+	font-family: "LTCBodoni175W01-Regular";
+	text-align: center;
+	font-style: normal;
+	font-size: 40px;
+	font-weight: 400;
+	letter-spacing: 0px;
+  line-height: 1.5em;
+  text-decoration: none;
+  text-transform: none;
+  margin: 0;
+}
+.postTitle hr{
+	width: 42px;
+	background-color: #f0f0f0;
+}
+.postDate{
+	text-align: center;
+	font-family: Lato;
+	font-weight: 400;
+	font-size: 16px;
+	font-style: normal;
+	letter-spacing: .02em;
+	line-height: 1.5em;
+	color: #bbb;
+}
+.postDescription{
+	padding: 40px 10px 40px 10px;
+}
+.postDescription p{
+  font-family: "Times New Roman",Times,serif;
+	font-size: 19px;
+	font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0px;
+  line-height: 1.3em;
+  text-decoration: none;
+  text-transform: none;
+  color: #000;
+}
+.postAuthor p{
+	font-family: "LTCBodoni175W01-Regular";
+	font-size: 16px;
+	font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0px;
+  line-height: 1.3em;
+  text-decoration: none;
+  text-transform: none;
+  color: #bbb;
+  text-align: center;
+}
+.postAuthor hr{
+	width: 50px;
+	background-color: #f0f0f0;
+}
+.iconComment{
+  font-family: "LTCBodoni175W01-Regular";
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0px;
+  line-height: 1.3em;
+  text-decoration: none;
+  text-transform: none;
+  color: #F8BBD0;
+  padding: 0px 100px 0px 0px;
+}
+.iconComment .fa{
+	font-size: 25px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.iconComment h1{
+	float: right;
+	font-size: 20px;
+	margin-left: 10px;
+	font-family: "Times New Roman",Times,serif;
+	font-weight: 400;
+	font-style: normal;
+	letter-spacing: 0px;
+	line-height: 1.3em;
+	text-decoration: none;
+	text-transform: none;
+}
+.commentForm{
+  height: 30%;
+  width: 30%;
+  display: none;
+  position: relative;
+  z-index: 1;
+  top: 5%;
+  left: 30px;
+  background-color: rgb(0,0,0);
+  background-color: #fff;
+}
+.commentForm.closeComment{
+  position: absolute;
+  top: 55px;
+  right: 45px;
+  font-size: 25px;
+  cursor: pointer;
+  color: black;
+}
+.commentForm h2{
+	float: right;
+	margin-left: 20px;
+
+}
+.commentForm .fa{
+	font-size: 20px;
+}
+.iconBack .fa{
+	top: 50%;
+	left: 20px;
+	position: fixed;
+	font-size: 20px;
+	color: #000;
+	outline: none;
+	text-decoration: none;
+}
+.newPost{
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-bottom: 30px;
+	font-family: "Times New Roman",Times,serif;
+	font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0px;
+  line-height: 1.3em;
+  text-decoration: none;
+  text-transform: none;
+}
+.newPost .fa{
+	font-size: 25px;
+	color: #F8BBD0;
+	outline: none;
+	text-decoration: none;
 }
