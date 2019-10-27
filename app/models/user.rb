@@ -1,10 +1,15 @@
 class User < ApplicationRecord
-  before_create :confirmation_token
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts
+  
+  after_create :welcome_email
+
+  def welcome_email
+    UserMailer.welcome_email(self).deliver
+  end 
 
   def soft_delete  
     update_attribute(:deleted_at, Time.current)  
@@ -18,5 +23,10 @@ class User < ApplicationRecord
   # provide a custom message for a deleted account   
   def inactive_message   
     !deleted_at ? super : :deleted_account  
-  end  
+  end
+
+  protected
+def confirmation_required?
+  false
+end
 end
