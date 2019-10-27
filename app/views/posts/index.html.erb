@@ -2,9 +2,9 @@
 <div class="container">
   <div class="row">
     <% @posts.each do |post| %>
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="img">
-        <%= image_tag post.image.variant(resize: "500x500") %>
+        <%= image_tag post.image.variant(resize: "500x500"), class: 'img-fluid' %>
       </div>
       <div class="date">
         <hr><%= post.created_at.strftime("%b %d") %>
@@ -16,5 +16,5 @@
     <% end %>
   </div>
 </div>
-<%= link_to 'New Post', new_post_path %>
+
 <%= paginate @posts %>

@@ -5,7 +5,6 @@ Thanks for signing up!
 <%= form_for @subscriber do |f| %>
 <%= f.text_field :name, placeholder: "Name" %>
 <%= f.email_field :email, placeholder: "e-mail" %>
-<%= f.select :source, ["Programowanie", "Java", "sfg"], prompt: "How did you hear about us?" %>
 <%= f.submit %>
 <% end %>
 <% end %>

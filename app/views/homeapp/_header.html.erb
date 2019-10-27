@@ -5,12 +5,13 @@
     </div>
     <div class="col-1 p-0 text-right">
       <div class="social pr-2">
+        <i class="fa fa-envelope" onclick="openNewsletter()"></i>
         <a href="https://www.linkedin.com/in/dominika-pienczyn-5519ba13a/"><i class="fa fa-linkedin"></i></a>
         <a href="https://github.com/dpienczyn"><i class="fa fa-github"></i></a>
       </div>
     </div>
     <div class="col-1 pl-2 search">
-      <i class="fa fa-search"></i>
+      <i class="fa fa-search" onclick="openSearch()"></i>
     </div>
     <div class="col-2 iconMenu" id="nav-icon4">
       <span></span>
@@ -19,6 +20,33 @@
     </div>
   </div>
 </div>
+
+<!-- Newsletter -->
+ <div id="myOverlay" class="overlay">
+  <span class="closebtn" onclick="closeNewsletter()" title="Close Overlay"><i class="fa fa-times"></i></span>
+  <div class="overlay-content">
+    <h3>Newsletter</h3>
+    <form action="action_page.php">
+      <input type="text" placeholder="Name" name="name" required>
+    <input type="text" placeholder="Email address" name="mail" required>
+    <div class="container">
+    <input type="submit" value="Send">
+  </div>
+    </form>
+  </div>
+</div> <!-- -->
+
+<!--Search-->
+<div id="mySearch" class="overlaySearch">
+  <span class="closebtn" onclick="closeSearch()" title="Close Overlay"><i class="fa fa-times"></i>
+    </span>
+  <div class="overlay-content">
+    <form action="action_page.php">
+      <input type="text" class="form-control" id="exampleInput" aria-describedby="emailHelp" placeholder="Search">
+    </form>
+  </div>
+</div> <!-- -->
+
 
 <div id="sideTrayWrapper" class="sidetray-wrapper">
   <div class="container h-100">
@@ -39,6 +67,10 @@
 
           <div class="nav-link--external">
             <span><%= link_to "contact", contact_index_path %></span>
+          </div>
+
+          <div class="nav-link--external">
+            <span><%= link_to "settings", settings_index_path %></span>
           </div>
 
           <div class="nav-link--external">
