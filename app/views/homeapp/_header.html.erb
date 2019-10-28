@@ -21,22 +21,10 @@
   </div>
 </div>
 
-<!-- Newsletter -->
- <div id="myOverlay" class="overlay">
-  <span class="closebtn" onclick="closeNewsletter()" title="Close Overlay"><i class="fa fa-times"></i></span>
-  <div class="overlay-content">
-    <h3>Newsletter</h3>
-    <form action="action_page.php">
-      <input type="text" placeholder="Name" name="name" required>
-    <input type="text" placeholder="Email address" name="mail" required>
-    <div class="container">
-    <input type="submit" value="Send">
-  </div>
-    </form>
-  </div>
-</div> <!-- -->
+<%= render 'subscribers/new' %>
 
 <%= render 'homeapp/search' %>
+
 <div id="sideTrayWrapper" class="sidetray-wrapper">
   <div class="container h-100">
     <div class="row h-100">

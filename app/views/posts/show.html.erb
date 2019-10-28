@@ -38,8 +38,9 @@
       </div>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-4">
       <div class="imageCircle">
+        <%= image_tag("img/me.jpg", size: "100", class: "rounded-circle") %><p><%= link_to "Dominika", home_about_path %></p>
       </div>
     </div>
   </div>
@@ -51,9 +52,6 @@
         <i class="fa fa-plus" onclick="openComment()"><h1>Comment</h1></i>
       </div>
       <div class="commentForm" id="commentsForm">
-        <div class="close">
-        <span class="closebtn" onclick="closeComment()" title="Close Overlay"><i class="fa fa-times"></i></span>
-      </div>
         <%= render @post.comments %>
         <%= render "comments/form" %>
       </div>

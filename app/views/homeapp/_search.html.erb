@@ -5,7 +5,7 @@
   <div class="overlay-content">
     <%= form_tag( posts_path ,method: :get, remote: true, class: "search_form_u") do %>
     <form action="action_page.php">
-      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: 'Search' %>
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: 'Search', autocomplete: "off" %>
           </form>
           <% end %>
   </div>

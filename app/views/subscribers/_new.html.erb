@@ -1,0 +1,14 @@
+<!-- Newsletter -->
+<div id="myOverlay" class="overlay">
+  <span class="closebtn" onclick="closeNewsletter()" title="Close Overlay"><i class="fa fa-times"></i></span>
+  <div class="overlay-content">
+    <h3>Newsletter</h3>
+    <%= form_for Subscriber.new do |f| %>
+    <div class="container">
+      <%= f.text_field :name, placeholder: "Name", required: true %>
+      <%= f.email_field :email, placeholder: "E-mail", required: true %>
+      <%= f.submit "Send" %>
+    </div>
+    <% end %>
+  </div>
+</div> <!-- -->

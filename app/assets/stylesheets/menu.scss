@@ -112,8 +112,8 @@
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  top: 21px;
-  left: 8px;
+  top: 32px;
+  left: 0;
 }
 
 #nav-icon4.open span:nth-child(2) {
@@ -126,8 +126,8 @@
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  top: 39px;
-  left: 8px;
+  top: 49px;
+  left: 0;
 }
 .main-navigation{
   border-right: solid 1px #f0f0f0;
@@ -293,7 +293,9 @@ hr{
   font-family: "LTCBodoni175W01-Regular";
 }
 
-.overlay input[type=text], input[type=submit] {
+.overlay input[type=text],
+.overlay input[type=email],
+input[type=submit] {
   border-radius: 4px;
   width: 50%;
   padding: 12px;
