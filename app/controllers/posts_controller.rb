@@ -4,9 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-    # @posts = Post.where("author ILIKE ?", "%#{params[:search]}%")
-    @posts = Post.page(params[:page]).per(9)
+    #@posts = Post.all
+    @posts = Post.where("title ILIKE ?", "%#{params[:search]}%")
+                 .page(params[:page]).per(9)
+    respond_to do |format|
+        format.js
+        format.html
+      end
   end
 
   # GET /posts/1

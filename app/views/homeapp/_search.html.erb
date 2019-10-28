@@ -1,0 +1,13 @@
+<!--Search-->
+<div id="mySearch" class="overlaySearch">
+  <span class="closebtn" onclick="closeSearch()" title="Close Overlay"><i class="fa fa-times"></i>
+    </span>
+  <div class="overlay-content">
+    <%= form_tag( posts_path ,method: :get, remote: true, class: "search_form_u") do %>
+    <form action="action_page.php">
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: 'Search' %>
+          </form>
+          <% end %>
+  </div>
+</div> <!-- -->
+

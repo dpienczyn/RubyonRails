@@ -1,13 +1,12 @@
-<p>
-  <b>Commenter:</b>
+<div class="autorComment">
   <%= comment.comment %>
-</p>
- 
-<p>
-  <b>Comment:</b>
+  <p><%= comment.created_at.strftime("%Y-%m-%d") %></p>
+  <hr>
+</div>
+<div class="bodyComment">  
   <%= comment.body %>
-</p>
-<p>
+  <hr>
+</div>
   <%= link_to 'Destroy Comment', [comment.post, comment],
                :confirm => 'Are you sure?',
                :method => :delete %>

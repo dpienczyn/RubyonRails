@@ -51,9 +51,10 @@
         <i class="fa fa-plus" onclick="openComment()"><h1>Comment</h1></i>
       </div>
       <div class="commentForm" id="commentsForm">
-        <span class="closebtn" onclick="closeComment()" title="Close Overlay"><i class="fa fa-times"><h2>Comments</h2></i></span>
+        <div class="close">
+        <span class="closebtn" onclick="closeComment()" title="Close Overlay"><i class="fa fa-times"></i></span>
+      </div>
         <%= render @post.comments %>
-        <h2>Add a comment:</h2>
         <%= render "comments/form" %>
       </div>
       <br />
