@@ -34,7 +34,7 @@ local:
 #   mirrors: [ amazon, google, microsoft ]
 amazon:
   service: S3
-  access_key_id: 'AKIAX7CRDYXP2FLBT4WD'
-  secret_access_key: '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'
+  access_key_id: Rails.application.credentials.access_key_id_bucketeer
+  secret_access_key: Rails.application.credentials.secret_access_key_bucketeer
   region: 'us-east-1'
   bucket: 'bucketeer-d5c19108-65c7-49b4-8a0c-857e5bd02c51'
