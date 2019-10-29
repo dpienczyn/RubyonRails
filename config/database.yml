@@ -81,6 +81,6 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: db/production.sqlite3
+  database: app_production
   username: app
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
