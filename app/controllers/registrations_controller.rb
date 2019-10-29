@@ -1,4 +1,4 @@
-class Users::RegistartionsController < Devise::RegistartionsController
+class RegistartionsController < Devise::RegistartionsController
 	
 	private
 
