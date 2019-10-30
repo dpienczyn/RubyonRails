@@ -4,25 +4,23 @@
 <br/>
 <table>
 	<div class="col-md-4">
-      <div class="imageCircle">
-        <%= image_tag("img/me.jpg", size: "100", class: "rounded-circle") %></p>
-      </div>
+    <div class="imageCircle">
+      <%= image_tag("img/me.jpg", size: "100", class: "rounded-circle") %></p>
     </div>
-<% @post.each do |post| %>
-  <%#= link_to blog_url(post) do %>
-      <tr style="display:flex; float:left; clear:both;">
-        <td style="display:flex; float:left; clear:both; height: 80px; width: 100px;">
-        </td>
-        <td>
-          <h3>
-           <%= post.title %>
-          </h3>
-          <p><%= post.description %></p>
-        </td>
-        <td style="display:flex; float:left; clear:both;">
-           
-        </td>
-      </tr>
-  <%# end %>
-<% end %>
+  </div>
+  <% @post.each do |post| %>
+  <tr style="display:flex; float:left; clear:both;">
+    <td style="display:flex; float:left; clear:both; height: 80px; width: 100px;">
+    </td>
+    <td>
+      <h3>
+       <%= post.title %>
+     </h3>
+     <p><%= post.description %></p>
+   </td>
+   <td style="display:flex; float:left; clear:both;">
+
+   </td>
+ </tr>
+ <% end %>
 </table>

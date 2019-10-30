@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
-  <div class="row" id="posts">
-    <%= render partial: 'posts/post', collection: @posts %>
-  </div>
+	<div class="row" id="posts">
+		<%= render partial: 'posts/post', collection: @posts %>
+	</div>
 </div>
 
 <%= paginate @posts %>
