@@ -41,6 +41,7 @@ gem 'mini_magick'
 gem "aws-sdk-s3", require: false
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
+gem 'carrierwave'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec'
