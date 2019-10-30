@@ -1,7 +1,6 @@
 require_relative 'boot'
 
 require 'rails/all'
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -9,6 +8,7 @@ Bundler.require(*Rails.groups)
 module App
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.middleware.use PDFKit::Middleware
     config.load_defaults 5.2
     #config.assets.paths << Rails.root.join("app", "assets", "images")
     # Settings in config/environments/* take precedence over those specified here.

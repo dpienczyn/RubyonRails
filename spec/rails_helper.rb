@@ -1,5 +1,6 @@
 require 'spec_helper'
-require 'factory_bot_rails'
+require 'shoulda/matchers'
+require 'support/factory_bot_rails'
 require 'rspec/rails'
 
 Shoulda::Matchers.configure do |config|

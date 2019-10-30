@@ -4,5 +4,4 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Witamy na naszej stronie", from: 'pienczyn.d@gmail.com'
   end
-  
 end

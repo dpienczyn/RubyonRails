@@ -39,7 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem "font-awesome-rails"
 gem 'mini_magick'
 gem "aws-sdk-s3", require: false
-
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec'
