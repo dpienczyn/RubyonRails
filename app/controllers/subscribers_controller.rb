@@ -1,5 +1,6 @@
 class SubscribersController < ApplicationController
-  
+  skip_before_action :authenticate_user!
+
   def index
   	@subscriber = Subscriber.new
   end
@@ -10,7 +11,7 @@ class SubscribersController < ApplicationController
   		cookies[:saved_lead] = true
   		redirect_to root_path, notice: "Saved successfully"
   	else
-  		redirect_to root_path, notice: "Failed to save"
+  		redirect_to root_path, notice: "Adres e-mail już istnieje"
   	end
   end
 

@@ -13,7 +13,8 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])   
-  end
+    
+end
 
   # GET /posts/new
   def new
@@ -27,8 +28,15 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = current_user.posts.build(post_params)
+    @user = current_user
+    @post = @user.posts.build(post_params)
     if @post.save
+      @subscribers = Subscriber.all
+        if @subscribers != NIL
+          @subscribers.each do |subscriber|
+            SubscriberMailer.new_post(subscriber, @post).deliver
+            end
+           end
       redirect_to @post, notice: 'Post was successfully created.'
     else
       render :new
