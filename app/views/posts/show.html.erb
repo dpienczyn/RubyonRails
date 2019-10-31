@@ -60,6 +60,7 @@
       </div>
     </div>
   </div>
+  <%= link_to "PDF file", post_path(format: 'pdf')%>
 
   <div class="container">
     <div class="row">
@@ -78,8 +79,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="page-break">
-  <i class="fa fa-file-pdf"></i>
-  <%= link_to 'Plik pdf', post_path(format: 'pdf'), class: "fa fa-file-pdf" %>
 </div>

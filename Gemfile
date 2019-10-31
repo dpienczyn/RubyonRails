@@ -37,12 +37,10 @@ gem 'kaminari'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "font-awesome-rails"
-gem 'pdfkit'
-gem 'wkhtmltopdf-binary'
 gem 'carrierwave'
 gem 'mini_magick'
 gem "aws-sdk-s3", require: false
-
+gem 'prawn', '~> 2.2', '>= 2.2.2'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec'

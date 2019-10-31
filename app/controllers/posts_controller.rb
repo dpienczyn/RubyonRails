@@ -12,9 +12,18 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])   
-    
-end
+    @post = Post.find(params[:id])  
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
+      format.pdf do
+        pdf = PostPdf.new(@post)
+        send_data pdf.render, filename: "#{@post.title}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
+  end
 
   def new
     @post = current_user.posts.build
@@ -26,18 +35,18 @@ end
   def create
     @user = current_user
     @post = @user.posts.build(post_params)
-    if @post.save
-      @subscribers = Subscriber.all
-        if @subscribers != NIL
-          @subscribers.each do |subscriber|
+      if @post.save
+        @subscribers = Subscriber.all
+          if @subscribers != NIL
+            @subscribers.each do |subscriber|
             SubscriberMailer.new_post(subscriber, @post).deliver
-            end
-           end
-      redirect_to @post, notice: 'Post was successfully created.'
-    else
-      render :new
+          end
+        end
+        redirect_to @post, notice: 'Post was successfully created.'
+      else
+        render :new
+      end
     end
-  end
 
   def update
     respond_to do |format|
