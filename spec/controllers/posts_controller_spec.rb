@@ -12,10 +12,17 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to be_successful
     end
 
-    fit "returns a search posts" do
+    it "returns a search posts" do
       post = create(:post, title: "graphic")
       get :index, params: { search: "graphi" }
       expect(assigns(:posts)).to eq [post]
+    end
+  end
+
+  describe "GET #show" do
+    it 'should success and render to edit page' do
+    get :show, params: { id: post.id }
+    expect(response).to have_http_status(200)
     end
   end
 end

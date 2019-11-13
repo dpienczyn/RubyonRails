@@ -56,15 +56,15 @@
 
           <% if user_signed_in? %>
           <div class="nav-link--external">
-            <span><%= link_to "wyloguj się", destroy_user_session_path, method: 'delete' %></span>
+            <span><%= link_to "sign out", destroy_user_session_path, method: 'delete' %></span>
           </div>
           <% else %>
           <div class="nav-link--external">
-            <span><%= link_to "logowanie", new_user_session_path %></span>
+            <span><%= link_to "login", new_user_session_path %></span>
           </div>
-          
+
           <div class="nav-link--external">
-            <span><%= link_to "rejestracja", new_user_registration_path %></span>
+            <span><%= link_to "registartion", new_user_registration_path %></span>
           </div>
           <% end %>
         </nav>
