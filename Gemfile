@@ -44,6 +44,7 @@ group :test do
   gem 'faker'
   gem 'simplecov', require: false
   gem 'chromedriver-helper'
+  gem 'rails-controller-testing'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

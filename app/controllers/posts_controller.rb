@@ -5,14 +5,16 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     #@posts = Post.all
+    puts params[:search]
     @posts = Post.where("title ILIKE ?", "#{params[:search]}%")
                  .page(params[:page]).per(9)
+    puts @posts.count
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])  
+    @post = Post.find(params[:id])
     respond_to do |format|
       format.html
       format.json { render json: @post }
@@ -81,5 +83,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:author, :description, :title, :image)
     end
-    
+
 end
