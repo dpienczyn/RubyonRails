@@ -21,15 +21,15 @@ RSpec.describe PostsController, type: :controller do
 
   describe "GET #show" do
     it 'should success and render to edit page' do
-    get :show, params: { id: post.id }
-    expect(response).to have_http_status(200)
+      get :show, params: { id: post.id }
+      expect(response).to have_http_status(200)
     end
   end
 
   describe "GET #new" do
     it 'should success and render to new post' do
-    get :new, params: {}, session: valid_session
-    expect(response).to be_successful
+      get :new, params: {}, session: valid_session
+      expect(response).to be_successful
     end
   end
 end
