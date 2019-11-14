@@ -25,4 +25,11 @@ RSpec.describe PostsController, type: :controller do
     expect(response).to have_http_status(200)
     end
   end
+
+  describe "GET #new" do
+    it 'should success and render to new post' do
+    get :new, params: {}, session: valid_session
+    expect(response).to be_successful
+    end
+  end
 end
