@@ -3,10 +3,13 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
 
   let!(:posts) { create_list(:post, 5) }
-  let(:post) { create(:post) }
   let(:user) {create(:user)}
+  let(:subscriber) {create(:subscriber)}
 
   describe "GET #index" do
+
+    let(:post) { create(:post) }
+
     it "returns a success response" do
       get :index
       expect(response).to be_successful
@@ -20,6 +23,9 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "GET #show" do
+
+    let(:post) { create(:post) }
+
     it 'should success response' do
       get :show, params: { id: post.id }
       expect(response).to be_successful
@@ -54,13 +60,85 @@ RSpec.describe PostsController, type: :controller do
       get :new
       expect(assigns(:post)).to be_a_new(Post)
     end
+
+    it "value is not valid" do
+      sign_in(user)
+      post = Post.new(title: nil)
+      expect(post).to_not be_valid
+    end
   end
 
-  describe "GET #create" do
-    fit "should success create" do
+  describe "POST #create" do
+
+    it "should success create" do
       sign_in(user)
-      post :create, params: { post: { author: post.author, title: post.title, description: post.description } }
-      expect(response).to be_successful
+      post :create, params: { post: attributes_for(:post) }
+      expect(response).to have_http_status(:found)
+    end
+
+    it "will set notice" do
+      sign_in(user)
+      post :create, params: { post: attributes_for(:post) }
+      expect(flash[:notice]).to be_present
+    end
+
+    context "when invalid" do
+      before {
+        sign_in(user)
+        post :create, params: { post: { title: "", description: "lololol", author: "ola" } }
+      }
+
+      it "will render new template" do
+        expect(response).to render_template(:new)
+      end
+    end
+  end
+
+
+  describe "PUT #update" do
+    let(:other_user) { create(:user) }
+    let(:post) { create(:post, user: user) }
+    let(:valid_params) { attributes_for(:post, title: 'test') }
+    let(:invalid_params) { attributes_for(:post, title: '') }
+
+    context 'when author user' do
+
+      subject do
+        put :update, params: { id: post.id, post: valid_params }
+      end
+
+      it 'updates requested post' do
+        sign_in(user)
+        subject
+        post.reload
+        expect(post.title).to eq('test')
+       end
+     end
+
+    context 'when other user' do
+
+      subject do
+        put :update, params: { id: post.id, post: valid_params }
+      end
+
+      it 'not updates requested post' do
+        sign_in(other_user)
+        subject
+        expect(response).to_not be_successful
+      end
+    end
+
+    context 'when invalid' do
+
+      subject do
+        put :update, params: { id: post.id, post: invalid_params }
+      end
+
+      it "will render edit template" do
+        sign_in(user)
+        subject
+        expect(response).to render_template(:edit)
+      end
     end
   end
 end
