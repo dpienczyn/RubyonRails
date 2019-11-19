@@ -5,7 +5,7 @@ RSpec.describe HomeappController, type: :controller do
   describe "GET #index" do
     let(:user) {create(:user)}
 
-    it "renders the other template" do
+    xit "renders the other template" do
       sign_in(user)
       get :index
     end

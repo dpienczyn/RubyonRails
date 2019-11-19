@@ -148,15 +148,15 @@ RSpec.describe PostsController, type: :controller do
 
   describe "DELETE #destroy" do
     let(:other_user) { create(:user) }
-    let(:post) { create(:post, user: user) }
+    let!(:post) { create(:post, user: user) }
     let(:post_params) { attributes_for(:post) }
 
     subject do
-      delete :destroy, params: { id: post.id, post: post_params }
+      delete :destroy, params: { id: post.id }
     end
 
-    xit "requires authentication" do
-      delete :destroy
+    it "requires authentication" do
+      subject
       expect(response).to redirect_to(new_user_session_path)
     end
 
@@ -176,17 +176,7 @@ RSpec.describe PostsController, type: :controller do
 
       it "should delete post in db" do
         sign_in(user)
-        subject
-        expect{ subject }.to change{ Post.count }.by(0)
-      end
-    end
-
-    context "when user is not an author" do
-
-      it "not delete requested post" do
-        sign_in(other_user)
-        subject
-        expect(response).to_not be_successful
+        expect{ subject }.to change(Post, :count).by(-1)
       end
     end
   end
