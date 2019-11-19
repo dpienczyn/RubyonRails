@@ -38,6 +38,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "GET #new" do
+
     it 'requires authentication' do
       get :new
       expect(response).to redirect_to(new_user_session_path)
@@ -171,6 +172,12 @@ RSpec.describe PostsController, type: :controller do
         sign_in(user)
         subject
         expect(response).to redirect_to(posts_url)
+      end
+
+      it "should delete post in db" do
+        sign_in(user)
+        subject
+        expect{ subject }.to change{ Post.count }.by(0)
       end
     end
 
