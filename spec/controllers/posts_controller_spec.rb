@@ -63,26 +63,37 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "POST #create" do
+    let(:post_params) { attributes_for(:post) }
+
+    subject do
+      sign_in(user)
+      post :create, params: { post: post_params }
+    end
+
+    it "requires authentication" do
+      post :create
+      expect(response).to redirect_to(new_user_session_path)
+    end
 
     it "should success create" do
-      sign_in(user)
-      post :create, params: { post: attributes_for(:post) }
+      subject
       expect(response).to have_http_status(:found)
     end
 
+    it "should create new post in db" do
+      expect{ subject }.to change(Post, :count).by(1)
+    end
+
     it "will set notice" do
-      sign_in(user)
-      post :create, params: { post: attributes_for(:post) }
+      subject
       expect(flash[:notice]).to be_present
     end
 
     context "when invalid" do
-      before {
-        sign_in(user)
-        post :create, params: { post: { title: "", description: "lololol", author: "ola" } }
-      }
+      let(:post_params) { attributes_for(:post, title: '') }
 
       it "will render new template" do
+        subject
         expect(response).to render_template(:new)
       end
     end
@@ -104,9 +115,9 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to redirect_to post_path
     end
 
-    context 'when author user' do
+    context "when user is an author" do
 
-      it 'updates requested post' do
+      it "updates requested post" do
         sign_in(user)
         subject
         post.reload
@@ -114,16 +125,16 @@ RSpec.describe PostsController, type: :controller do
        end
      end
 
-    context 'when other user' do
+    context "when user is not an author" do
 
-      it 'not updates requested post' do
+      it "not updates requested post" do
         sign_in(other_user)
         subject
         expect(response).to_not be_successful
       end
     end
 
-    context 'when invalid' do
+    context "when invalid params" do
       let(:post_params) { attributes_for(:post, title: '') }
 
       it "will render edit template" do
@@ -134,7 +145,7 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe "DELETE 'destroy'" do
+  describe "DELETE #destroy" do
     let(:other_user) { create(:user) }
     let(:post) { create(:post, user: user) }
     let(:post_params) { attributes_for(:post) }
@@ -143,22 +154,33 @@ RSpec.describe PostsController, type: :controller do
       delete :destroy, params: { id: post.id, post: post_params }
     end
 
-    it "will set notice" do
-      sign_in(user)
-      subject
-      expect(flash[:notice]).to be_present
+    xit "requires authentication" do
+      delete :destroy
+      expect(response).to redirect_to(new_user_session_path)
     end
 
-    it " will redirect to posts_url" do
-      sign_in(user)
-      subject
-      expect(response).to redirect_to(posts_url)
+    context "when user is an author" do
+
+      it "will set notice" do
+        sign_in(user)
+        subject
+        expect(flash[:notice]).to be_present
+      end
+
+      it "will redirect to posts_url" do
+        sign_in(user)
+        subject
+        expect(response).to redirect_to(posts_url)
+      end
     end
 
-    it 'not delete requested post' do
-      sign_in(other_user)
-      subject
-      expect(response).to_not be_successful
+    context "when user is not an author" do
+
+      it "not delete requested post" do
+        sign_in(other_user)
+        subject
+        expect(response).to_not be_successful
+      end
     end
   end
 end
