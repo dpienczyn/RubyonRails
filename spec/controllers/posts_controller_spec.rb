@@ -60,12 +60,6 @@ RSpec.describe PostsController, type: :controller do
       get :new
       expect(assigns(:post)).to be_a_new(Post)
     end
-
-    it "value is not valid" do
-      sign_in(user)
-      post = Post.new(title: nil)
-      expect(post).to_not be_valid
-    end
   end
 
   describe "POST #create" do
@@ -98,14 +92,19 @@ RSpec.describe PostsController, type: :controller do
   describe "PUT #update" do
     let(:other_user) { create(:user) }
     let(:post) { create(:post, user: user) }
-    let(:valid_params) { attributes_for(:post, title: 'test') }
-    let(:invalid_params) { attributes_for(:post, title: '') }
+    let(:post_params) { attributes_for(:post, title: 'test') }
+
+    subject do
+      put :update, params: { id: post.id, post: post_params }
+    end
+
+    it "will redirect to root path" do
+      sign_in(user)
+      subject
+      expect(response).to redirect_to post_path
+    end
 
     context 'when author user' do
-
-      subject do
-        put :update, params: { id: post.id, post: valid_params }
-      end
 
       it 'updates requested post' do
         sign_in(user)
@@ -117,10 +116,6 @@ RSpec.describe PostsController, type: :controller do
 
     context 'when other user' do
 
-      subject do
-        put :update, params: { id: post.id, post: valid_params }
-      end
-
       it 'not updates requested post' do
         sign_in(other_user)
         subject
@@ -129,16 +124,41 @@ RSpec.describe PostsController, type: :controller do
     end
 
     context 'when invalid' do
-
-      subject do
-        put :update, params: { id: post.id, post: invalid_params }
-      end
+      let(:post_params) { attributes_for(:post, title: '') }
 
       it "will render edit template" do
         sign_in(user)
         subject
         expect(response).to render_template(:edit)
       end
+    end
+  end
+
+  describe "DELETE 'destroy'" do
+    let(:other_user) { create(:user) }
+    let(:post) { create(:post, user: user) }
+    let(:post_params) { attributes_for(:post) }
+
+    subject do
+      delete :destroy, params: { id: post.id, post: post_params }
+    end
+
+    it "will set notice" do
+      sign_in(user)
+      subject
+      expect(flash[:notice]).to be_present
+    end
+
+    it " will redirect to posts_url" do
+      sign_in(user)
+      subject
+      expect(response).to redirect_to(posts_url)
+    end
+
+    it 'not delete requested post' do
+      sign_in(other_user)
+      subject
+      expect(response).to_not be_successful
     end
   end
 end
