@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
 
-  ##let!(:comments) { create_list(:comment, 5) }
+  let!(:comments) { create_list(:comment, 5) }
 
   describe "POST #create" do
     let(:article) { create(:post) }
@@ -21,14 +21,28 @@ RSpec.describe CommentsController, type: :controller do
       puts Comment.count
       expect{ subject }.to change(Comment, :count).by(1)
     end
+  end
 
-    context "when invalid" do
-      let(:post_params) { attributes_for(:post, title: '') }
+  describe "DELETE #destroy" do
+    let(:article) { create(:post) }
+    let!(:comment) { create(:comment) }
 
-      xit "will render new template" do
+    subject do
+      delete :destroy, params: { id: comment.id, post_id: article.id }
+    end
+
+      xit "will set notice" do
         subject
-        expect(response).to render_template(:new)
+        expect(flash[:notice]).to be_present
+      end
+
+      xit "will redirect to posts_url" do
+        subject
+        expect(response).to redirect_to(posts_url)
+      end
+
+      xit "should delete post in db" do
+        expect{ subject }.to change(Post, :count).by(-1)
       end
     end
-  end
 end

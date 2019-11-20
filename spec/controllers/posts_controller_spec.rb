@@ -149,7 +149,6 @@ RSpec.describe PostsController, type: :controller do
   describe "DELETE #destroy" do
     let(:other_user) { create(:user) }
     let!(:post) { create(:post, user: user) }
-    let(:post_params) { attributes_for(:post) }
 
     subject do
       delete :destroy, params: { id: post.id }
