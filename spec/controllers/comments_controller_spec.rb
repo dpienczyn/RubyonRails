@@ -24,25 +24,24 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    let(:article) { create(:post) }
     let!(:comment) { create(:comment) }
 
     subject do
-      delete :destroy, params: { id: comment.id, post_id: article.id }
+      delete :destroy, params: { id: comment.id, post_id: comment.post.id }
     end
 
-      xit "will set notice" do
+      it "will set notice" do
         subject
         expect(flash[:notice]).to be_present
       end
 
-      xit "will redirect to posts_url" do
+      it "will redirect to posts_url" do
         subject
-        expect(response).to redirect_to(posts_url)
+        expect(response).to redirect_to(post_url)
       end
 
-      xit "should delete post in db" do
-        expect{ subject }.to change(Post, :count).by(-1)
+      it "should delete post in db" do
+        expect{ subject }.to change(Comment, :count).by(-1)
       end
     end
 end
