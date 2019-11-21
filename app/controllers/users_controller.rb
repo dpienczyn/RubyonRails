@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       bypass_sign_in(@user)
-      redirect_to root_path
+      redirect_to root_path, notice: 'Zaktualizowano hasło.'
     else
       render "edit"
     end

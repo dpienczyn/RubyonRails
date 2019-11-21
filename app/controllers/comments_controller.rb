@@ -1,11 +1,6 @@
 class CommentsController < ApplicationController
 	skip_before_action :authenticate_user!
 
-	def new
-		@post = Post.find(params[:post_id])
-		@comment = Comment.new
-	end
-
 	def create
 		@post = Post.find(params[:post_id])
 		@comment = @post.comments.create(comment_params)

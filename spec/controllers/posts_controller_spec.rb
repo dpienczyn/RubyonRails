@@ -4,7 +4,6 @@ RSpec.describe PostsController, type: :controller do
 
   let!(:posts) { create_list(:post, 5) }
   let(:user) {create(:user)}
-  let(:subscriber) {create(:subscriber)}
 
   describe "GET #index" do
 

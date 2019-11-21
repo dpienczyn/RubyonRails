@@ -12,7 +12,7 @@
       </p>
       <% end %>
     </div>
-    
+
     <div class="col-md-12">
       <div class="postAuthor">
         <p><%= @post.author %></p><hr>
@@ -36,11 +36,11 @@
         <p><%= @post.description %></p>
       </div>
     </div>
-    <div>    
+    <div>
 
       <div class="col-md-4">
         <div class="imageCircle">
-          <%= image_tag("img/me.jpg", size: "100", class: "rounded-circle") %><p><%= link_to "Dominika", home_about_path %></p>
+          <%= image_tag("img/me.jpg", size: "100", class: "rounded-circle") %><p><%= link_to "Dominika", pages_about_path %></p>
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-       <% if @post.user == current_user %> 
+       <% if @post.user == current_user %>
        <%= link_to 'Edit', edit_post_path(@post) %> |
        <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
        <% end %>
