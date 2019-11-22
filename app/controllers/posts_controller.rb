@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.where("title ILIKE ?", "#{params[:search]}%")
-    .page(params[:page]).per(9)
+                 .page(params[:page]).per(9)
   end
 
   def show
