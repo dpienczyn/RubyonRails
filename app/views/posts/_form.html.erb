@@ -2,7 +2,6 @@
 <% if post.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
   <ul>
     <% post.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -10,28 +9,17 @@
   </ul>
 </div>
 <% end %>
-<div class="form-group">
-  <%= form.label :author %>
-  <%= form.text_field :author, class: 'form-control', :placeholder => "Author" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="editNewPost">
+        <%= form.text_field :author, class: 'form-control', :placeholder => "Author" %>
+        <%= form.text_field :title, class: 'form-control', :placeholder => "Title" %>
+        <%= form.text_area :description, class: 'form-control', :placeholder => "Description" %>
+        <%= form.file_field :image, class: "imagePost"%></br>
+        <%= form.submit "Dodaj", class: "sendBtn" %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="form-group">
-  <%= form.label :title %>
-  <%= form.text_field :title, class: 'form-control', :placeholder => "Title" %>
-</div>
-
-<div class="form-group">
-  <%= form.label :description %>
-  <%= form.text_area :description, class: 'form-control', :placeholder => "Description" %>
-</div>
-
-<div class="field">
-  <%= form.label :image %>
-  <%= form.file_field :image %>
-</div>   
-
-<div class="actions">
-  <%= form.submit "Add post", class: 'btn btn-outline-info btn-lg' %>
-</div>
-
 <% end %>

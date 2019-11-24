@@ -2,15 +2,16 @@
 	font-family: "LTCBodoni175W01-Regular";
 	font-size: 19px;
 	font-weight: 400;
-    font-style: normal;
-    letter-spacing: 0px;
-    line-height: 1.3em;
-    text-decoration: none;
-    text-transform: none;
-    color: #000;
+	font-style: normal;
+	letter-spacing: 0px;
+	line-height: 1.3em;
+	text-decoration: none;
+	text-transform: none;
+	color: #000;
 }
-.autorComment{
+.commentsPost .autorComment{
 	padding-top: 40px;
+	width: 60%;
 	font-size: 20px;
 	margin-left: 10px;
 	font-family: "LTCBodoni175W01-Regular";
@@ -21,9 +22,9 @@
 	text-decoration: none;
 	text-transform: none;
 }
-.autorComment p{
-   float: right;
-   font-size: 17px;
+.commentsPost .autorComment p{
+	float: right;
+	font-size: 17px;
 	margin-left: 10px;
 	font-family: "Times New Roman",Times,serif;
 	font-weight: 400;
@@ -34,16 +35,19 @@
 	text-transform: none;
 	color: #e2dedebf;
 }
-.autorComment hr{
-	width: 100%;
+.commentsPost .autorComment hr{
+	width: 163%;
 	background-color: #f0f0f0;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
-.bodyComment hr{
+.commentsPost .bodyComment hr{
 	width: 100%;
 	background-color: #f0f0f0;
+	margin-bottom: 10px;
 }
 .bodyComment{
-   font-size: 18px;
+	font-size: 18px;
 	margin-left: 10px;
 	font-family: "Times New Roman",Times,serif;
 	font-weight: 400;
@@ -55,20 +59,37 @@
 	color: #7972729e;
 }
 .addComments .form-control{
-    font-size: 18px;
-	margin-left: 10px;
+	border: 1px solid #f0f0f0;
+	width: 60%;
+	margin-bottom: 25px;
+	border-radius: 4px;
+	padding: 12px;
+	line-height: 200%;
 	font-family: "LTCBodoni175W01-Regular";
-  font-style: normal;
-  letter-spacing: 0em;
-  opacity: 1;
-  line-height: 200%;
-  font-weight: 600;
-  font-style: normal;
-  letter-spacing: 0em;
-  opacity: 1;
-  line-height: 200%;
+	font-weight: 600;
+	font-style: normal;
+	letter-spacing: 0em;
+	opacity: 1;
 }
 .addComments{
-	padding-top: 50px;
-	padding-left: 15px;
+	padding: 50px 20px 50px 20px;
+}
+.commentsPost .destroyComment .fa{
+	color: #7972729e;
+	font-size: 22px;
+	margin-left: 15px;
+}
+.sendComment {
+	border-radius: 4px;
+	width: 60%;
+	padding: 12px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #f0f0f0;
+	box-sizing: border-box;
+	font-weight: 600;
+	font-style: normal;
+	letter-spacing: 0em;
+	opacity: 1;
+	line-height: 200%;
 }

@@ -1,6 +1,7 @@
-<h1>Edit Post</h1>
-
+<div class="newPostTitle">
+  <h1>Edytuj Post</h1>
+</div>
 <%= render 'form', post: @post %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<div class="iconBack">
+  <%= link_to '', posts_path, class: "fa fa-arrow-left" %>
+</div>
