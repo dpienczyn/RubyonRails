@@ -1,17 +1,66 @@
+.titleContact{
+  padding-top: 100px;
+}
 .titleContact p{
   color: #000000;
   text-decoration: none;
   font-family: "LTCBodoni175W01-Regular";
   font-size: 22px;
-  padding-bottom: 20px;
+  padding-bottom: 6px;
   font-weight: 600;
   margin-top: 16px;
   letter-spacing: 0em;
   opacity: 0.9;
   line-height: 200%;
-  text-align: center;
 }
-.titleContact hr{
-  background-color: #f0f0f0;
-  width: 50%;
+.addressContact h2{
+  font-family: "Times New Roman";
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0em;
+  opacity: 0.9;
+  line-height: 200%;
+}
+.addressContact p{
+  font-family: "Times New Roman";
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+}
+.phoneContact h2{
+  font-family: "Times New Roman";
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0em;
+  opacity: 0.9;
+  line-height: 200%;
+}
+.phoneContact p{
+  font-family: "Times New Roman";
+  color: #F8BBD0;
+  font-size: 20px;
+}
+.phoneContact p:hover{
+  opacity: 0.8;
+}
+.emailContact{
+  padding-bottom: 100px;
+}
+.emailContact h2{
+  font-family: "Times New Roman";
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0em;
+  opacity: 0.9;
+  line-height: 200%;
+}
+.emailContact p{
+  font-family: "Times New Roman";
+  color: #F8BBD0;
+  font-size: 20px;
+}
+.emailContact p:hover{
+  opacity: 0.8;
 }
