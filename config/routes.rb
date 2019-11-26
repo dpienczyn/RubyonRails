@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   resources :subscribers, only: [:create, :index]
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      resources :posts, only: [:show, :index]
+      resources :posts, only: [:show, :index, :create, :update]
+      resources :sessions, only: [:create, :destroy]
     end
   end
 end
