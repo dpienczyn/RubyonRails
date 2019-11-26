@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
   get 'settings/index'
   get 'password_resets/new'
-  get 'project/index'
-  get 'projects/index'
-  get 'contact/index'
   resources :posts do
-  resources :comments
-end
-  get 'homeapp/index'
+    resources :comments
+  end
   root 'posts#index'
-  get 'home/about'
-  get 'contact/index'
-  devise_for :users
-  resources :subscribers, only: :create
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, skip: [:sessions]
+  as :user do
+    get 'sign_in', to: 'devise/sessions#new', as: :new_user_session
+    post 'sign_up', to: 'devise/sessions#create', as: :user_session
+    delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+  controller :pages do
+    get 'pages/about'
+    get 'pages/contact'
+    get 'pages/projects'
+  end
+  resources :subscribers, only: [:create, :index]
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :posts, only: [:show, :index]
+    end
+  end
 end

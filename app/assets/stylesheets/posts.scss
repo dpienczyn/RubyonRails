@@ -16,12 +16,12 @@
 }
 .title{
 	font-family: "Times New Roman",Times,serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 28px;
-  letter-spacing: 0em;
-  line-height: 1.5em;
-  text-align: center;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 28px;
+	letter-spacing: 0em;
+	line-height: 1.5em;
+	text-align: center;
 }
 .title a{
 	text-decoration: none;
@@ -42,10 +42,10 @@
 	font-size: 40px;
 	font-weight: 400;
 	letter-spacing: 0px;
-  line-height: 1.5em;
-  text-decoration: none;
-  text-transform: none;
-  margin: 0;
+	line-height: 1.5em;
+	text-decoration: none;
+	text-transform: none;
+	margin: 0;
 }
 .postTitle hr{
 	width: 42px;
@@ -65,43 +65,43 @@
 	padding: 40px 10px 40px 10px;
 }
 .postDescription p{
-  font-family: "Times New Roman",Times,serif;
+	font-family: "Times New Roman",Times,serif;
 	font-size: 19px;
 	font-weight: 400;
-  font-style: normal;
-  letter-spacing: 0px;
-  line-height: 1.3em;
-  text-decoration: none;
-  text-transform: none;
-  color: #000;
+	font-style: normal;
+	letter-spacing: 0px;
+	line-height: 1.3em;
+	text-decoration: none;
+	text-transform: none;
+	color: #000;
 }
 .postAuthor p{
 	font-family: "LTCBodoni175W01-Regular";
 	font-size: 16px;
 	font-weight: 400;
-  font-style: normal;
-  letter-spacing: 0px;
-  line-height: 1.3em;
-  text-decoration: none;
-  text-transform: none;
-  color: #bbb;
-  text-align: center;
+	font-style: normal;
+	letter-spacing: 0px;
+	line-height: 1.3em;
+	text-decoration: none;
+	text-transform: none;
+	color: #bbb;
+	text-align: center;
 }
 .postAuthor hr{
 	width: 50px;
 	background-color: #f0f0f0;
 }
 .iconComment{
-  font-family: "LTCBodoni175W01-Regular";
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 0px;
-  line-height: 1.3em;
-  text-decoration: none;
-  text-transform: none;
-  color: #F8BBD0;
-  padding: 0px 100px 0px 0px;
+	font-family: "LTCBodoni175W01-Regular";
+	font-size: 16px;
+	font-weight: 400;
+	font-style: normal;
+	letter-spacing: 0px;
+	line-height: 1.3em;
+	text-decoration: none;
+	text-transform: none;
+	color: #F8BBD0;
+	padding: 0px 100px 0px 0px;
 }
 .iconComment .fa{
 	font-size: 25px;
@@ -121,25 +121,25 @@
 	text-transform: none;
 }
 .commentForm{
-  height: 100%;
-  width: 100%;
-  display: none;
-  position: relative;
-  z-index: 1;
-  top: 5%;
-  left: 0;
-  background-color: rgb(0,0,0);
-  background-color: #fff;
-  padding-right: 15px;
-  padding-left: 15px;
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: relative;
+	z-index: 1;
+	top: 5%;
+	left: 0;
+	background-color: rgb(0,0,0);
+	background-color: #fff;
+	padding-right: 15px;
+	padding-left: 15px;
 }
 .commentForm.closeComment{
-  position: absolute;
-  top: 55px;
-  right: 45px;
-  font-size: 25px;
-  cursor: pointer;
-  color: black;
+	position: absolute;
+	top: 55px;
+	right: 45px;
+	font-size: 25px;
+	cursor: pointer;
+	color: black;
 }
 .commentForm h2{
 	float: right;
@@ -149,8 +149,8 @@
 .close .fa{
 	font-size: 20px;
 	padding-bottom: 100px;
-  float: right;
-  color: #212529db;
+	float: right;
+	color: #212529db;
 }
 .iconBack .fa{
 	top: 50%;
@@ -167,11 +167,11 @@
 	padding-bottom: 30px;
 	font-family: "Times New Roman",Times,serif;
 	font-weight: 400;
-  font-style: normal;
-  letter-spacing: 0px;
-  line-height: 1.3em;
-  text-decoration: none;
-  text-transform: none;
+	font-style: normal;
+	letter-spacing: 0px;
+	line-height: 1.3em;
+	text-decoration: none;
+	text-transform: none;
 }
 .newPost .fa{
 	font-size: 25px;
@@ -184,17 +184,82 @@
 	padding-top: 40px;
 }
 .imageCircle p{
-  margin-top: 18px;
+	margin-top: 18px;
 }
 .imageCircle p a{
-  font-family: "LTCBodoni175W01-Regular";
-  font-size: 20px;
-  font-weight: 600;
-  font-style: normal;
-  letter-spacing: 0px;
-  line-height: 1.5em;
-  text-decoration: none;
-  text-transform: none;
-  color: #212529;
-  outline: none;
+	font-family: "LTCBodoni175W01-Regular";
+	font-size: 20px;
+	font-weight: 600;
+	font-style: normal;
+	letter-spacing: 0px;
+	line-height: 1.5em;
+	text-decoration: none;
+	text-transform: none;
+	color: #212529;
+	outline: none;
+}
+.iconsAction .fa{
+	color: #000000;
+	font-size: 25px;
+	text-decoration: none;
+	margin: 10px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+.iconsAction{
+	text-align: center;
+}
+.iconsAction .fa:hover{
+	opacity: 0.8;
+}
+.iconBack .fa{
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.editNewPost{
+	padding: 50px 50px 50px 50px;
+	text-align: center;
+}
+.editNewPost .form-control{
+	border: 1px solid #f0f0f0;
+	width: 60%;
+	margin: auto;
+	margin-bottom: 25px;
+	border-radius: 4px;
+	padding: 12px;
+	line-height: 200%;
+	font-family: "LTCBodoni175W01-Regular";
+	font-weight: 600;
+	font-style: normal;
+	letter-spacing: 0em;
+	opacity: 1;
+}
+.editNewPost .sendBtn{
+	width: 60%;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	border-radius: 4px;
+	background-color: #F8BBD0;
+	border: none;
+	color: #1d1818;
+	font-family: "LTCBodoni175W01-Regular";
+	font-weight: 600;
+	font-style: normal;
+	letter-spacing: 0em;
+	opacity: 1;
+}
+.editNewPost .sendBtn:hover{
+	opacity: 0.8;
+}
+.newPostTitle{
+	text-align: center;
+}
+.newPostTitle h1{
+	font-size: 25px;
+	line-height: 400%;
+	font-family: "LTCBodoni175W01-Regular";
+	font-weight: 600;
+	font-style: normal;
+	letter-spacing: 0em;
+	opacity: 1;
 }

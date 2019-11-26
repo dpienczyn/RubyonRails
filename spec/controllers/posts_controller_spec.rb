@@ -4,7 +4,6 @@ RSpec.describe PostsController, type: :controller do
 
   let!(:posts) { create_list(:post, 5) }
   let(:user) {create(:user)}
-  let(:subscriber) {create(:subscriber)}
 
   describe "GET #index" do
 
@@ -98,6 +97,20 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to render_template(:new)
       end
     end
+
+    context "send email to subscriber" do
+      let(:subscriber) { create(:subscriber) }
+
+      subject do
+        sign_in(user)
+        post :create, params: { post: post_params }
+      end
+
+      it 'send email' do
+        expect { SubscriberMailer.new_post(subscriber, subject)}
+        .to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
+    end
   end
 
 
@@ -123,8 +136,8 @@ RSpec.describe PostsController, type: :controller do
         subject
         post.reload
         expect(post.title).to eq('test')
-       end
-     end
+      end
+    end
 
     context "when user is not an author" do
 

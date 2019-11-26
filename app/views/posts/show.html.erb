@@ -12,7 +12,7 @@
       </p>
       <% end %>
     </div>
-    
+
     <div class="col-md-12">
       <div class="postAuthor">
         <p><%= @post.author %></p><hr>
@@ -36,46 +36,48 @@
         <p><%= @post.description %></p>
       </div>
     </div>
-    <div>    
+    <div>
 
       <div class="col-md-4">
         <div class="imageCircle">
-          <%= image_tag("img/me.jpg", size: "100", class: "rounded-circle") %><p><%= link_to "Dominika", home_about_path %></p>
+          <%= image_tag("img/me.jpg", size: "100", class: "rounded-circle") %><p><%= link_to "Dominika", pages_about_path %></p>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <% if @post.user == current_user %>
+        <div class="iconsAction">
+          <td><%= link_to '', edit_post_path(@post), class: "fa fa-edit" %></td>
+          <td><%= link_to '', @post, method: :delete, data: { confirm: 'Are you sure?' },class: "fa fa-trash" %></td>
+          <td><%= link_to "", post_path(format: 'pdf'), class: "fa fa-file" %></td>
+        </div>
+        <% end %>
+        <div class="iconBack">
+          <%= link_to '', posts_path, class: "fa fa-arrow-left"%>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row">
       <div class="col-md-8">
         <div class="iconComment">
-          <i class="fa fa-plus" onclick="openComment()"><h1>Comment</h1></i>
+          <i class="fa fa-plus" onclick="openComment()"><h1>Dodaj komentarz</h1></i>
         </div>
         <div class="commentForm" id="commentsForm">
           <%= render @post.comments %>
           <%= render "comments/form" %>
         </div>
-        <br />
-      </div>
-    </div>
-  </div>
-</div>
-  <%= link_to "PDF file", post_path(format: 'pdf')%>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-       <% if @post.user == current_user %> 
-       <%= link_to 'Edit', edit_post_path(@post) %> |
-       <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-       <% end %>
-       <% if user_signed_in? %>
-       <div class="newPost">
-         <%= link_to '', new_post_path, class: "fa fa-plus-square" %>
-       </div>
-       <% end %>
-       <div class="iconBack">
-        <%= link_to '', posts_path, class: "fa fa-arrow-left"%>
+        <% if user_signed_in? %>
+        <div class="newPost">
+          <%= link_to '', new_post_path, class: "fa fa-plus-square" %>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>

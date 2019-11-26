@@ -1,5 +1,7 @@
-<h1>Create Post</h1>
-<hr>
+<div class="newPostTitle">
+<h1>Nowy Post</h1>
+</div>
 <%= render 'form', post: @post %>
-
-<%= link_to 'Back', posts_path %>
+<div class="iconBack">
+  <%= link_to '', posts_path, class: "fa fa-arrow-left" %>
+</div>

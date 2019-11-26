@@ -14,8 +14,8 @@ class PostsController < ApplicationController
       format.pdf do
         pdf = PostPdf.new(@post)
         send_data pdf.render, filename: "#{@post.title}.pdf",
-                              type: "application/pdf",
-                              disposition: "inline"
+        type: "application/pdf",
+        disposition: "inline"
       end
     end
   end
@@ -31,10 +31,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       @subscribers = Subscriber.all
-        @subscribers.all.each do |subscriber|
-          SubscriberMailer.new_post(subscriber, @post).deliver
-        end
-        redirect_to @post, notice: 'Dodano nowy post.'
+      @subscribers.all.each do |subscriber|
+        SubscriberMailer.new_post(subscriber, @post).deliver
+      end
+      redirect_to @post, notice: 'Dodano nowy post.'
     else
       render :new
     end
@@ -42,9 +42,9 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-    redirect_to @post, notice: 'Zaktualizowano post.'
+      redirect_to @post, notice: 'Zaktualizowano post.'
     else
-    render :edit
+      render :edit
     end
   end
 
