@@ -3,7 +3,7 @@ class Api::V1::PostsController < Api::ApplicationController
 
   def index
     @posts = Post.where("title ILIKE ?", "#{params[:search]}%")
-                 .page(params[:page]).per(9)
+    .page(params[:page]).per(9)
     render json: @posts
   end
 
@@ -19,6 +19,10 @@ class Api::V1::PostsController < Api::ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+      @subscribers = Subscriber.all
+      @subscribers.all.each do |subscriber|
+        SubscriberMailer.new_post(subscriber, @post).deliver
+      end
       render json: @post, status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
