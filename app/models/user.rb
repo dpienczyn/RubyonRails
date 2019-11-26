@@ -9,16 +9,8 @@ class User < ApplicationRecord
     UserMailer.welcome_email(self).deliver_later
   end
 
-  def soft_delete
-    update_attribute(:deleted_at, Time.current)
-  end
-
   def active_for_authentication?
     super && !deleted_at
-  end
-
-  def inactive_message
-    !deleted_at ? super : :deleted_account
   end
 
   def assign_auth_token!
