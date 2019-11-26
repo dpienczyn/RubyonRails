@@ -1,5 +1,6 @@
 class Api::V1::PostsController < Api::ApplicationController
-  #before_action :set_article, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_article, only: [:show, :update, :destroy]
 
   def index
     @posts = Post.where("title ILIKE ?", "#{params[:search]}%")
@@ -13,7 +14,7 @@ class Api::V1::PostsController < Api::ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @post = @user.posts.build(post_params)
     if @post.save
       @subscribers = Subscriber.all
       @subscribers.all.each do |subscriber|
@@ -40,7 +41,7 @@ class Api::V1::PostsController < Api::ApplicationController
   private
 
   def set_post
-    @post = current_user.posts.find_by(id: params[:id])
+    @post = @user.posts.find(params[:id])
   end
 
   def post_params
