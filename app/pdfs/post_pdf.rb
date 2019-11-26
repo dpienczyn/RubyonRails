@@ -7,7 +7,6 @@ class PostPdf < Prawn::Document
 		text "Tytuł: #{@post.title} "
 		text "Opis: #{@post.description}"
 	end
-
 	# def post_description
 	# 	text "Opis: #{@post.title} "
 	# 	text "Description: #{@post.description}"
