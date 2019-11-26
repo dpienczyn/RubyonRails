@@ -3,17 +3,13 @@ class Api::V1::PostsController < Api::ApplicationController
 
   def index
     @posts = Post.where("title ILIKE ?", "#{params[:search]}%")
-    .page(params[:page]).per(9)
+                 .page(params[:page]).per(9)
     render json: @posts
   end
 
   def show
     @post = Post.find(params[:id])
-    pdf = PostPdf.new(@post)
-    send_data pdf.render, filename: "#{@post.title}.pdf",
-    type: "application/pdf",
-    disposition: "inline"
-    render json: @posts
+    render json: @post
   end
 
   def create
