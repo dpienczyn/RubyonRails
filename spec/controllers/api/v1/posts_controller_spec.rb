@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::PostsController, type: :controller do
-
   let(:user) {create(:user)}
-  let!(:posts) { create_list(:post, 5) }
 
   describe "GET #index " do
     let(:post) { create(:post) }
@@ -54,6 +52,44 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         expect { SubscriberMailer.new_post(subscriber, subject)}
         .to change { ActionMailer::Base.deliveries.count }.by(1)
       end
+    end
+  end
+
+  describe "PUT #update" do
+    let(:post) { create(:post, user: user) }
+    let(:post_params) { attributes_for(:post, title: 'test') }
+
+    subject do
+      put :update, params: { id: post.id, post: post_params }, format: :json
+    end
+
+    it "should success" do
+      sign_in(user)
+      subject
+      expect(response).to be_success
+    end
+
+    context "when invalid" do
+      let(:post_params) { attributes_for(:post, title: '') }
+
+      it "when title is empty" do
+        sign_in(user)
+        subject
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    let!(:post) { create(:post, user: user) }
+
+    subject do
+      delete :destroy, params: { id: post.id }, format: :json
+    end
+
+    it "should delete post in db" do
+      sign_in(user)
+      expect{ subject }.to change(Post, :count).by(-1)
     end
   end
 end
