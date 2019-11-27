@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
   :recoverable, :rememberable, :trackable, :validatable
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   after_create :welcome_email
 
