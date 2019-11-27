@@ -34,11 +34,6 @@ RSpec.describe CommentsController, type: :controller do
       expect(flash[:notice]).to be_present
     end
 
-    it "will redirect to post_url" do
-      subject
-      expect(response).to redirect_to(post_url)
-    end
-
     it "should delete comment in db" do
       expect{ subject }.to change(Comment, :count).by(-1)
     end
