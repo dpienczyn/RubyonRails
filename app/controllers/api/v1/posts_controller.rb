@@ -1,6 +1,6 @@
 class Api::V1::PostsController < Api::ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_article, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.where("title ILIKE ?", "#{params[:search]}%")
@@ -11,6 +11,10 @@ class Api::V1::PostsController < Api::ApplicationController
   def show
     @post = Post.find(params[:id])
     render json: @post
+  end
+
+  def new
+    @post = @user.posts.build
   end
 
   def create
