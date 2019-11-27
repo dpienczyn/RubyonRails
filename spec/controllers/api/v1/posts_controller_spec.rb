@@ -16,6 +16,31 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     end
   end
 
+  describe "GET #show" do
+
+    let(:post) { create(:post) }
+
+    it 'should ok response' do
+      get :show, params: { id: post.id }, format: :json
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe "GET #new" do
+
+    it 'should success' do
+      sign_in(user)
+      get :new, format: :json
+      expect(response).to be_success
+    end
+
+    it 'should assign new post' do
+      sign_in(user)
+      get :new, format: :json
+      expect(assigns(:post)).to be_a_new(Post)
+    end
+  end
+
   describe "POST #create" do
     let(:user) {create(:user)}
     let(:post_params) { attributes_for(:post) }
