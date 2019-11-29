@@ -3,19 +3,19 @@ require 'rails_helper'
 RSpec.describe PagesController, type: :controller do
 
   describe "GET #about" do
-    it "renders the other template" do
+    it "get view :about" do
       get :about
     end
   end
 
   describe "GET #contact" do
-    it "renders the other template" do
+    it "get view :contact" do
       get :contact
     end
   end
 
   describe "GET #projects" do
-    it "renders the other template" do
+    it "get view :projects" do
       get :projects
     end
   end
