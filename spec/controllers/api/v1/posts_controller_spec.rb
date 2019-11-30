@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::PostsController, type: :controller do
-  let(:user) {create(:user)}
 
-  describe "GET #index " do
+  let(:user) {create(:user, email: 'donia19881@wp.pl', password: '1234567')}
+
+  describe "GET #index" do
     let(:post) { create(:post) }
 
     it "returns http status success" do
@@ -20,7 +21,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
     let(:post) { create(:post) }
 
-    it 'should ok response' do
+    it "should ok response" do
       get :show, params: { id: post.id }, format: :json
       expect(response).to have_http_status(200)
     end
@@ -28,26 +29,30 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
   describe "GET #new" do
 
-    it 'should success' do
+    subject do
+      @request.env["HTTP_USER_TOKEN"] = user.auth_token
       sign_in(user)
-      get :new, format: :json
+      get :new, params: { user: user.attributes.merge(password: '1234567') }, format: :json
+    end
+
+    it "should success" do
+      subject
       expect(response).to be_success
     end
 
-    it 'should assign new post' do
-      sign_in(user)
-      get :new, format: :json
+    it "should assign new post" do
+      subject
       expect(assigns(:post)).to be_a_new(Post)
     end
   end
 
   describe "POST #create" do
-    let(:user) {create(:user)}
     let(:post_params) { attributes_for(:post) }
 
     subject do
+      @request.env["HTTP_USER_TOKEN"] = user.auth_token
       sign_in(user)
-      post :create, params: { post: post_params }
+      post :create, params: { post: post_params, user: user.attributes.merge(password: '1234567') }, format: :json
     end
 
     it "returns http status :created" do
@@ -68,13 +73,8 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     context "send email to subscriber" do
       let(:subscriber) { create(:subscriber) }
 
-      subject do
-        sign_in(user)
-        post :create, params: { post: post_params }
-      end
-
       it 'send email' do
-        expect { SubscriberMailer.new_post(subscriber, subject)}
+        expect { SubscribersNotifyService.new_post(subscriber, subject)}
         .to change { ActionMailer::Base.deliveries.count }.by(1)
       end
     end
@@ -85,7 +85,9 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     let(:post_params) { attributes_for(:post, title: 'test') }
 
     subject do
-      put :update, params: { id: post.id, post: post_params }, format: :json
+      @request.env["HTTP_USER_TOKEN"] = user.auth_token
+      sign_in(user)
+      put :update, params: { id: post.id, post: post_params, user: user.attributes.merge(password: '1234567') }, format: :json
     end
 
     it "should success" do
@@ -109,11 +111,12 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     let!(:post) { create(:post, user: user) }
 
     subject do
-      delete :destroy, params: { id: post.id }, format: :json
+      @request.env["HTTP_USER_TOKEN"] = user.auth_token
+      sign_in(user)
+      delete :destroy, params: { id: post.id, user: user.attributes.merge(password: '1234567') }, format: :json
     end
 
     it "should delete post in db" do
-      sign_in(user)
       expect{ subject }.to change(Post, :count).by(-1)
     end
   end
