@@ -25,12 +25,12 @@ RSpec.describe PostsController, type: :controller do
 
     let(:post) { create(:post) }
 
-    it 'should success response' do
+    it "should success response" do
       get :show, params: { id: post.id }
       expect(response).to be_successful
     end
 
-    it 'should render show page' do
+    it "should render show page" do
       get :show, params: { id: post.id }
       expect(response).to render_template(:show)
     end
@@ -38,24 +38,24 @@ RSpec.describe PostsController, type: :controller do
 
   describe "GET #new" do
 
-    it 'requires authentication' do
+    it "requires authentication" do
       get :new
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    it 'should success' do
+    it "should success" do
       sign_in(user)
       get :new
       expect(response).to be_successful
     end
 
-    it 'should render new page' do
+    it "should render new page" do
       sign_in(user)
       get :new
       expect(response).to render_template(:new)
     end
 
-    it 'should assign new post' do
+    it "should assign new post" do
       sign_in(user)
       get :new
       expect(assigns(:post)).to be_a_new(Post)
@@ -101,13 +101,8 @@ RSpec.describe PostsController, type: :controller do
     context "send email to subscriber" do
       let(:subscriber) { create(:subscriber) }
 
-      subject do
-        sign_in(user)
-        post :create, params: { post: post_params }
-      end
-
-      it 'send email' do
-        expect { SubscriberMailer.new_post(subscriber, subject)}
+      it "send email" do
+        expect { SubscribersNotifyService.new_post(subscriber, subject)}
         .to change { ActionMailer::Base.deliveries.count }.by(1)
       end
     end
