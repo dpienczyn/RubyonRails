@@ -22,7 +22,7 @@ class Api::V1::PostsController < Api::ApplicationController
     if @post.save
       @subscribers = Subscriber.all
       @subscribers.all.each do |subscriber|
-        SubscriberMailer.new_post(subscriber, @post).deliver
+        SubscribersNotifyService.new_post(subscriber, @post).deliver
       end
       render json: @post, status: :created
     else
