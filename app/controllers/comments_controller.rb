@@ -1,17 +1,27 @@
 class CommentsController < ApplicationController
 	skip_before_action :authenticate_user!
+	before_action :set_comment, only: [:create, :destroy]
 
 	def create
-		@post = Post.find(params[:post_id])
 		@comment = @post.comments.create(comment_params)
-		redirect_to post_path(@post), notice: 'Dodano nowy komentarz.'
+		if @comment.save
+			redirect_to post_path(@post), notice: 'Dodano nowy komentarz.'
+		else
+			redirect_to post_path(@post), notice: 'Coś poszło nie tak. Spróbuj ponownie.'
+		end
 	end
 
 	def destroy
-		@post = Post.find(params[:post_id])
 		@comment = @post.comments.find(params[:id])
-		@comment.destroy
-		redirect_to post_path(@post), notice: 'Komentarz został usunięty.'
+		if @comment.destroy
+			redirect_to post_path(@post), notice: 'Komentarz został usunięty.'
+		else
+			redirect_to post_path(@post), notice: 'Nie udało się usunąć Twojego komentarza.'
+		end
+	end
+
+	def set_comment
+		@post = Post.find(params[:post_id])
 	end
 
 	def comment_params
