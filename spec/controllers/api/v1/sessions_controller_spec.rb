@@ -8,13 +8,12 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
 
     subject do
       @request.env["HTTP_USER_TOKEN"] = user.auth_token
-      sign_in(user)
       post :create, params: { user: user.attributes.merge(password: '1234567') }, format: :json
     end
 
     it "should success" do
       subject
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     context "when user is not sign_in" do
@@ -34,7 +33,6 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
 
     subject do
       @request.env["HTTP_USER_TOKEN"] = user.auth_token
-      sign_in(user)
       delete :destroy, params: { id: user.id }, format: :json
     end
 
@@ -42,26 +40,23 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
 
       it "should success" do
         subject
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it "should delete user in db" do
-        puts User.count
-        expect{ subject }.to change(User, :count).by(0)
-        puts User.count
+        expect{ subject }.to change{user.reload.auth_token}
       end
     end
 
     context "when auth_token is empty" do
 
       subject do
-        sign_in(user)
         delete :destroy, params: { id: user.id }, format: :json
       end
 
-      it "unauthorized" do
+      it "not found" do
         subject
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

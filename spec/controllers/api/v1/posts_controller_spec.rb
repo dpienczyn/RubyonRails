@@ -13,7 +13,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
     it "should success" do
       get :index, format: :json
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -31,13 +31,12 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
     subject do
       @request.env["HTTP_USER_TOKEN"] = user.auth_token
-      sign_in(user)
       get :new, params: { user: user.attributes.merge(password: '1234567') }, format: :json
     end
 
     it "should success" do
       subject
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it "should assign new post" do
@@ -51,7 +50,6 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
     subject do
       @request.env["HTTP_USER_TOKEN"] = user.auth_token
-      sign_in(user)
       post :create, params: { post: post_params, user: user.attributes.merge(password: '1234567') }, format: :json
     end
 
@@ -86,21 +84,18 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
     subject do
       @request.env["HTTP_USER_TOKEN"] = user.auth_token
-      sign_in(user)
       put :update, params: { id: post.id, post: post_params, user: user.attributes.merge(password: '1234567') }, format: :json
     end
 
     it "should success" do
-      sign_in(user)
       subject
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     context "when invalid" do
       let(:post_params) { attributes_for(:post, title: '') }
 
       it "when title is empty" do
-        sign_in(user)
         subject
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -112,7 +107,6 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
     subject do
       @request.env["HTTP_USER_TOKEN"] = user.auth_token
-      sign_in(user)
       delete :destroy, params: { id: post.id, user: user.attributes.merge(password: '1234567') }, format: :json
     end
 
