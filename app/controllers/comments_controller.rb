@@ -5,18 +5,14 @@ class CommentsController < ApplicationController
 	def create
 		@comment = @post.comments.create(comment_params)
 		if @comment.save
-			redirect_to post_path(@post), notice: 'Dodano nowy komentarz.'
-		else
-			redirect_to post_path(@post), notice: 'Coś poszło nie tak. Spróbuj ponownie.'
+			redirect_to @post, notice: 'Dodano nowy komentarz.'
 		end
 	end
 
 	def destroy
 		@comment = @post.comments.find(params[:id])
 		if @comment.destroy
-			redirect_to post_path(@post), notice: 'Komentarz został usunięty.'
-		else
-			redirect_to post_path(@post), notice: 'Nie udało się usunąć Twojego komentarza.'
+			redirect_to @post, notice: 'Komentarz został usunięty.'
 		end
 	end
 
