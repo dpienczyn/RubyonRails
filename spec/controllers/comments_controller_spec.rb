@@ -29,8 +29,7 @@ RSpec.describe CommentsController, type: :controller do
       end
 
       it "will render new template" do
-      
-        expect(subject).to redirect_to post_path
+        expect(subject).to_not be_successful
       end
     end
   end

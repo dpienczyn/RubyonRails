@@ -129,8 +129,7 @@ RSpec.describe PostsController, type: :controller do
       it "updates requested post" do
         sign_in(user)
         subject
-        post.reload
-        expect(post.title).to eq('test')
+        expect(post.reload.title).to eq('test')
       end
     end
 
