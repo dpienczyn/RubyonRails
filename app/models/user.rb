@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
   :recoverable, :rememberable, :trackable, :validatable
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   after_create :welcome_email
 
@@ -9,22 +9,20 @@ class User < ApplicationRecord
     UserMailer.welcome_email(self).deliver_later
   end
 
-  def soft_delete
-    update_attribute(:deleted_at, Time.current)
-  end
-
-  # ensure user account is active
   def active_for_authentication?
     super && !deleted_at
   end
 
-  # provide a custom message for a deleted account
-  def inactive_message
-    !deleted_at ? super : :deleted_account
+  def assign_auth_token!
+    loop do
+      self.auth_token = SecureRandom.base64(50)
+      break unless User.exists?(auth_token: auth_token)
+    end
+    save!
   end
 
   protected
-  
+
   def confirmation_required?
     false
   end

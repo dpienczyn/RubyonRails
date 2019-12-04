@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe SubscriberMailer, :type => :mailer do
+RSpec.describe SubscribersNotifyService, type: :mailer do
   let(:subscriber) { create(:subscriber) }
   let(:post) { create(:post) }
 
   describe "notify" do
-    let(:mail) { SubscriberMailer.new_post(subscriber, post) }
+    let(:mail) { SubscribersNotifyService.new_post(subscriber, post) }
 
     it "check address e-mail" do
       expect(mail.from).to eq(["pienczyn.d@gmail.com"])

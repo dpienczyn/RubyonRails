@@ -31,8 +31,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       @subscribers = Subscriber.all
-      @subscribers.all.each do |subscriber|
-        SubscriberMailer.new_post(subscriber, @post).deliver
+      @subscribers.find_each do |subscriber|
+        SubscribersNotifyService.new_post(subscriber, @post).deliver
       end
       redirect_to @post, notice: 'Dodano nowy post.'
     else
